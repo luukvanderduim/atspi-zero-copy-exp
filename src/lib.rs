@@ -27,9 +27,6 @@ pub trait MessageConversion<'a>: BusProperties {
     /// What is the body type of this event.
     type Body<'b>: Type + Deserialize<'b>;
 
-    // Is desugared to:
-    // type Body<'b>: Type + for<'de> serde::Deserialize<'de>;
-
     fn from_message_unchecked(msg: &Message) -> Result<Self, Error>
     where
         Self: Sized;
